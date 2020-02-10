@@ -1,0 +1,20 @@
+# This Service manifest defines:
+# - a load balancer for pods matching label "app: python-hello-world"
+# - exposing the application to the public Internet (type:LoadBalancer)
+# - routes port 80 of the load balancer to the port 8080 of the Pods.
+# Syntax reference https://kubernetes.io/docs/concepts/configuration/overview/
+apiVersion: v1
+kind: Service
+metadata:
+  name: result-service
+  labels:
+    name: result-service
+    app: demo-voting-app
+spec:
+  type: LoadBalancer
+  selector:
+    name: result-app-pod
+    app: demo-voting-app
+  ports:
+    - port: 80
+      targetPort: 80
